@@ -1,0 +1,27 @@
+[
+    {
+      "category": "Unsatisfactory",
+      "description": "Performance is consistently below expectations."
+    },
+    {
+      "category": "Improvement Required",
+      "description": "Performance is somewhat below expectations for full competence, but some elements of satisfactory performance are exhibited."
+    },
+    {
+      "category": "Developing Performer",
+      "description": "A rating at this level reflects that the individual is in a growth and learning mode in terms of organizational values and/or Job Competence."
+    },
+    {
+      "category": "Solid Performer",
+      "description": "Individuals in this category consistently meet expectations and at times exceed them in demonstrating organizational values."
+    },
+    {
+      "category": "Exceeds Expectations",
+      "description": "Individuals in this category consistently exceed expectations in most of the organizational values."
+    },
+    {
+      "category": "Outstanding",
+      "description": "Individual in this category demonstrated exceptional ability to exhibit organizational values."
+    }
+  ]
+  

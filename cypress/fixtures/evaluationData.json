@@ -1,0 +1,52 @@
+{
+    "employeeName":"h3.page-title.employee-info",
+    "urls": {
+      "baseUrl": "http://172.22.1.141:8089/"
+    },
+    "credentials": {
+      "employee": {
+        "email": "test-employee",
+        "password": "45622"
+      },
+      "supervisor": {
+        "email": "test-supervisor",
+        "password": "45622"
+      },
+      "hr": {
+        "email": "test-hr",
+        "password": "45622"
+      }
+    },
+    "headers": [
+        "Description",
+        "Unsatisfactory",
+        "Improvement Required",
+        "Developing Performer",
+        "Solid Performer",
+        "Exceeds Expectations",
+        "Outstanding",
+        "Notes"
+      ],
+    "locators": {
+      "emailField": "#email",
+      "passwordField": "#password",
+      "loginButton": "button[type='submit']",
+      "logoutButton": "a[href='/Home/LogOut']",
+      "dropdownToggle": ".dropdown-toggle",
+      "myEvaluationNav": ".nav-link",
+      "openButton": "#open",
+      "changeStatusButton": "#change",
+      "statusDropdown": "#newStatus",
+      "showToastButton": "#showtoast",
+      "nameDropdown": "#name"
+    },
+    "evaluationEmployeeName": "test employee",
+    "selectEmployeeName":"test-employee",
+    "statuses": {
+      "closed": "Closed",
+      "started": "Started"
+    },
+    "comments": ["just a test", "just a test"],
+    "emptyComments": [" ", " "]
+  }
+  
