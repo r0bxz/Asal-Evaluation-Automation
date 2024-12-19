@@ -5,19 +5,46 @@ class MyEvaluationPage {
     }
   
     fillOutSelfEvaluation(comments) {
+      let selectedRates = []; // Array to store the selected rates
+    
       for (let i = 0; i < 18; i++) {
-        const randomNumber = Math.floor(Math.random() * 6)+1; 
+        const randomNumber = Math.floor(Math.random() * 6) + 1;
+    
         cy.get('table tbody tr')
           .eq(i)
           .within(() => {
-            cy.get('td').eq(randomNumber).find('input[type="checkbox"]').check();
+            // Check the random checkbox
+            cy.get('td')
+              .eq(randomNumber)
+              .find('input[type="checkbox"]')
+              .check()
+              .invoke('val') // Capture the value of the checked checkbox
+              .then((rate) => {
+                selectedRates.push(rate.trim());
+              });
           });
       }
-  
+    
       for (let a = 0; a < comments.length; a++) {
         cy.get('.form-control').eq(a).clear().type(comments[a]);
       }
+    
+      // Store the selected rates for later verification
+      cy.wrap(selectedRates).as('selectedRates');
     }
+
+    verifyEvaluationTableMatchesSelectedRates() {
+      cy.get('@selectedRates').then((selectedRates) => {
+        cy.get('table tbody tr').each(($row, index) => {
+          cy.wrap($row).find('td').eq(1).invoke('text').then((evaluationRate) => {
+            expect(evaluationRate.trim()).to.equal(selectedRates[index]);
+          });
+        });
+      });
+    }
+    
+      
+    
 
     fillOutSelfEvaluationNoFeedback() {
         for (let i = 0; i < 16; i++) {

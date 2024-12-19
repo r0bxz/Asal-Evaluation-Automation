@@ -20,18 +20,18 @@ describe('Employee Evaluation Process', () => {
 
     MyEvaluationPage.navigateToMyEvaluation(testData.locators);
     cy.url().should('include', 'Employee/EditEvaluation')  //URL Assertion 
-    cy.get(testData.employeeName).eq(2).should('include.text','test employee') //Employee Name  is visible
-    cy.get(testData.employeeName).eq(3).should('include.text','test supervisor') //Supervisor Name is visible
+    cy.get(testData.employeeName).eq(2).should('include.text','test employee') // Assert Employee Name  is visible
+    cy.get(testData.employeeName).eq(3).should('include.text','test supervisor') //Assert Supervisor Name is visible
     MyEvaluationPage.verifyRatingTableColumns(testData.headers); // Verify the headers of the table 
 
-    MyEvaluationPage.fillOutSelfEvaluationNoFeedback() // verify it gives the alerts when no feedback is filled 
+    MyEvaluationPage.fillOutSelfEvaluationNoFeedback() // verify it gives the alerts when no feedback is filled (Cannot submit the evaluation)
     
     MyEvaluationPage.fillOutSelfEvaluationNotAllCheckboxes(testData.comments)
-    MyEvaluationPage.verifyMissingQuestions() // verify the that it gives alerts when some checkboxes  are not checked
+    MyEvaluationPage.verifyMissingQuestions() // verify the that it gives alerts when some checkboxes  are not checked (the alerts show the missing questions)
 
     
 
-    MyEvaluationPage.verifyCheckboxFunctionality(); //verify the checkbox functionality 
+    MyEvaluationPage.verifyCheckboxFunctionality(); //verify the checkbox functionality (only one checkbox can be checked at a time within the same row)
     
     MyEvaluationPage.fillOutSelfEvaluation(testData.comments);
     MyEvaluationPage.saveEvaluation();
@@ -44,8 +44,9 @@ describe('Employee Evaluation Process', () => {
     MyEvaluationPage.fillOutSelfEvaluation(testData.comments);
    MyEvaluationPage.submitEvaluation();
 
-    // Assertion: Self-evaluation is submitted successfully
-    cy.get('img[src="../img/employeeReview.gif"]').should('be.visible');
+   MyEvaluationPage.verifyEvaluationTableMatchesSelectedRates(); // Verify the evaluation table
+                          
+    cy.get('img[src="../img/employeeReview.gif"]').should('be.visible');  // Assertion: Self-evaluation is submitted successfully
 
     // Logout
     CommonActions.logout(testData.locators);
