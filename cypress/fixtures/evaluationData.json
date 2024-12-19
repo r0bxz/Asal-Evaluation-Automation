@@ -28,6 +28,9 @@
         "Notes"
       ],
     "locators": {
+      "textarea":".form-control",
+      "table":"table tbody tr",
+      "checkbox":"input[type='checkbox']",
       "emailField": "#email",
       "passwordField": "#password",
       "loginButton": "button[type='submit']",
