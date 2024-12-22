@@ -116,38 +116,7 @@ class MyEvaluationPage {
         // Step 3: Click the cancel button
         cy.contains('button', 'Cancel').click({ force: true });
       }
-      
-      
-      
-
-    verifyCheckboxFunctionality() {
-    // Get all rows in the table
-    cy.get('table tbody tr').then(($rows) => {
-       const rowIndices = [0, 8, $rows.length - 1]; // Indices: 0 (1st row), 8 (9th row), and last row
-
-        // Loop through the selected rows (1st, 9th, and last row)
-        rowIndices.forEach((rowIndex) => {
-            // Get all checkboxes within the current row
-            cy.wrap($rows.eq(rowIndex)).find('input[type="checkbox"]').then(($checkboxes) => {
-                // Loop through each checkbox in the row
-                for (let checkboxIndex = 0; checkboxIndex < $checkboxes.length; checkboxIndex++) {
-                    // Check the current checkbox
-                    cy.wrap($checkboxes.eq(checkboxIndex)).check({ force: true });
-
-                    // Verify the current checkbox is checked
-                    cy.wrap($checkboxes.eq(checkboxIndex)).should('be.checked');
-
-                    // Verify all other checkboxes in the same row are not checked
-                    for (let innerIndex = 0; innerIndex < $checkboxes.length; innerIndex++) {
-                        if (innerIndex !== checkboxIndex) {
-                            cy.wrap($checkboxes.eq(innerIndex)).should('not.be.checked');
-                        }
-                    }
-                }
-            });
-        });
-    });
-}
+ 
 
 saveEvaluation() {
     cy.contains('button', 'Save Evaluation').click();

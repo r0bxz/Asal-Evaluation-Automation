@@ -1,8 +1,8 @@
 import CommonActions from '../../pages/CommonActions';
 import MyEvaluationPage from '../../pages/MyEvaluationPage';
-import testData from '../../fixtures/evaluationData.json';  // Importing the testData directly
+import testData from '../../fixtures/evaluationData.json';  
 
-describe('Employee Evaluation Process', () => {
+describe('Employee My Evaluation', () => {
 
   beforeEach(() => {
     cy.session('employee-session', () => {
@@ -19,7 +19,6 @@ describe('Employee Evaluation Process', () => {
     
     CommonActions.logout(testData.locators);
 
-    // Step 4: HR Updates Evaluation Status
     cy.visit(testData.urls.baseUrl);
     CommonActions.login(
       testData.credentials.hr.email,
