@@ -1,3 +1,4 @@
+import testData from '../fixtures/evaluationData.json'
 class MyEvaluationPage {
     navigateToMyEvaluation(locators) {
       cy.contains(locators.myEvaluationNav, "My Evaluation").click();
@@ -10,13 +11,13 @@ class MyEvaluationPage {
       for (let i = 0; i < 18; i++) {
         const randomNumber = Math.floor(Math.random() * 6) + 1;
     
-        cy.get('table tbody tr')
+        cy.get(testData.locators.table)
           .eq(i)
           .within(() => {
             // Check the random checkbox
             cy.get('td')
               .eq(randomNumber)
-              .find('input[type="checkbox"]')
+              .find(testData.locators.checkbox)
               .check()
               .invoke('val') // Capture the value of the checked checkbox
               .then((rate) => {
@@ -26,7 +27,7 @@ class MyEvaluationPage {
       }
     
       for (let a = 0; a < comments.length; a++) {
-        cy.get('.form-control').eq(a).clear().type(comments[a]);
+        cy.get(testData.locators.textarea).eq(a).clear().type(comments[a]);
       }
     
       // Store the selected rates for later verification
@@ -35,7 +36,7 @@ class MyEvaluationPage {
 
     verifyEvaluationTableMatchesSelectedRates() {
       cy.get('@selectedRates').then((selectedRates) => {
-        cy.get('table tbody tr').each(($row, index) => {
+        cy.get(testData.locators.table).each(($row, index) => {
           cy.wrap($row).find('td').eq(1).invoke('text').then((evaluationRate) => {
             expect(evaluationRate.trim()).to.equal(selectedRates[index]);
           });
@@ -48,10 +49,10 @@ class MyEvaluationPage {
     fillOutSelfEvaluationNoFeedback() {
         for (let i = 0; i < 16; i++) {
           const randomNumber = Math.floor(Math.random() * 6)+1; 
-          cy.get('table tbody tr')
+          cy.get(testData.locators.table)
             .eq(i)
             .within(() => {
-              cy.get('td').eq(randomNumber).find('input[type="checkbox"]').check({force:true});
+              cy.get('td').eq(randomNumber).find(testData.locators.checkbox).check({force:true});
             });
         }
         cy.contains('button', 'Submit Evaluation').click();
@@ -70,15 +71,15 @@ class MyEvaluationPage {
     fillOutSelfEvaluationNotAllCheckboxes(comments) {
         for (let i = 0; i < 9; i++) {
           const randomNumber = Math.floor(Math.random() * 6)+1; 
-          cy.get('table tbody tr')
+          cy.get(testData.locators.table)
             .eq(i)
             .within(() => {
-              cy.get('td').eq(randomNumber).find('input[type="checkbox"]').check();
+              cy.get('td').eq(randomNumber).find(testData.locators.checkbox).check();
             });
         }
     
         for (let a = 0; a < comments.length; a++) {
-          cy.get('.form-control').eq(a).clear().type(comments[a]);
+          cy.get(testData.locators.textarea).eq(a).clear().type(comments[a]);
         }
         cy.contains('button', 'Submit Evaluation').click();
       }
@@ -88,10 +89,10 @@ class MyEvaluationPage {
         let uncheckedQuestions = [];
       
         // Step 1: Collect all unchecked questions (rows with all unchecked checkboxes)
-        cy.get('table tbody tr').each(($row) => {
+        cy.get(testData.locators.table).each(($row) => {
           let isUnchecked = true;
       
-          cy.wrap($row).find('input[type="checkbox"]').each(($checkbox) => {
+          cy.wrap($row).find(testData.locators.checkbox).each(($checkbox) => {
             if ($checkbox.is(':checked')) {
               isUnchecked = false; // Mark the row as having a checked checkbox
             }
@@ -137,13 +138,13 @@ saveEvaluation() {
 
     verifyCheckboxFunctionality() {
         // Get all rows in the table
-        cy.get('table tbody tr').then(($rows) => {
+        cy.get(testData.locators.table).then(($rows) => {
             const rowIndices = [0, 8, $rows.length - 1]; // Indices: 0 (1st row), 8 (9th row), and last row
     
             // Loop through the selected rows (1st, 9th, and last row)
             rowIndices.forEach((rowIndex) => {
                 // Get all checkboxes within the current row
-                cy.wrap($rows.eq(rowIndex)).find('input[type="checkbox"]').then(($checkboxes) => {
+                cy.wrap($rows.eq(rowIndex)).find(testData.locators.checkbox).then(($checkboxes) => {
                     // Loop through each checkbox in the row
                     for (let checkboxIndex = 0; checkboxIndex < $checkboxes.length; checkboxIndex++) {
                         // Check the current checkbox
@@ -165,13 +166,13 @@ saveEvaluation() {
     }
     verifySavedData(comments) {
         // Verify checkboxes are still checked
-        cy.get('table tbody tr').each(($row) => {
-          cy.wrap($row).find('input[type="checkbox"]').should('be.checked');
+        cy.get(testData.locators.table).each(($row) => {
+          cy.wrap($row).find(testData.locators.checkbox).should('be.checked');
         });
     
         // Verify feedback notes are still filled
         for (let i = 0; i < comments.length; i++) {
-          cy.get('.form-control').eq(i).should('have.value', comments[i]);
+          cy.get(testData.locators.textarea).eq(i).should('have.value', comments[i]);
         }
       }
     

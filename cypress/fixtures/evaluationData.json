@@ -16,7 +16,9 @@
         "email": "test-hr",
         "password": "45622"
       }
+      
     },
+    
     "headers": [
         "Description",
         "Unsatisfactory",
@@ -28,6 +30,9 @@
         "Notes"
       ],
     "locators": {
+      "collapseButton":".collapse",
+      "tableBody":".portlet-body",
+      "search":"input[type='search']",
       "textarea":".form-control",
       "table":"table tbody tr",
       "checkbox":"input[type='checkbox']",
@@ -49,6 +54,7 @@
       "closed": "Closed",
       "started": "Started"
     },
+    "evaluationDate":"December 2024",
     "comments": ["just a test", "just a test"],
     "emptyComments": [" ", " "]
   }
