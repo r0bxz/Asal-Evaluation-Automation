@@ -41,20 +41,9 @@ describe('Evaluation History', () => {
   it('checks if the next td contains a button when status is not "No Evaluation"', () => {
     cy.visit(testData.urls.baseUrl);
     EvaluationHistoryPage.navigateToEvaluationHistory(testData.locators);
+    EvaluationHistoryPage.buttonExist();
     
-    cy.get('table#historyTable tbody tr').each(($row) => {
-      // Get the second <td> (status column) in the current row
-      const status = $row.find('td').eq(1).text().trim(); // Status column is the second td
-
-      // If the status is not "No Evaluation", check for a button in the next <td>
-      if (status !== 'No Evaluation') {
-        // Check that the next <td> contains a button with the class btn-group
-        cy.wrap($row)
-          .find('td').eq(2) // Get the third <td> (next td after status)
-          .find('.btn-group') // Check for button with class btn-group
-          .should('exist'); // Assert the button exists
-      }
-    });
+    
   });
 
   it('verifies search functionality', () => {

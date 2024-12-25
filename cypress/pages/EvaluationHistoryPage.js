@@ -54,6 +54,22 @@ class EvaluationHistoryPage {
       cy.get(testData.locators.tableBody)
       .should('have.css', 'display', 'block'); // Ensure the table is shown
     }
+
+    buttonExist(){
+      cy.get(testData.locators.table).each(($row) => {
+        // Get the second <td> (status column) in the current row
+        const status = $row.find('td').eq(1).text().trim(); // Status column is the second td
+  
+        // If the status is not "No Evaluation", check for a button in the next <td>
+        if (status !== 'No Evaluation') {
+          // Check that the next <td> contains a button with the class btn-group
+          cy.wrap($row)
+            .find('td').eq(2) // Get the third <td> (next td after status)
+            .find('.btn-group') // Check for button with class btn-group
+            .should('exist'); // Assert the button exists
+        }
+      });
+    }
   }
   
   export default new EvaluationHistoryPage();
