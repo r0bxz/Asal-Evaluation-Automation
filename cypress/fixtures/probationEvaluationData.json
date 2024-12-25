@@ -1,0 +1,22 @@
+{
+    "urls": {
+      "baseUrl": "http://172.22.1.141:8089/"
+    },
+    "credentials": {
+      "employee": {
+        "email": "test-employee",
+        "password": "45622"
+      }
+    },
+    "locators": {
+      
+      "probationEvaluationsNav": "#probation-evaluations-nav",
+      "table": "#probationEvaluationsTable tbody tr",
+      "search": "#probationEvaluationsSearch",
+      "statusDropdown": "#statusDropdown",
+      "paginationNext": ".pagination-next",
+      "paginationPrev": ".pagination-prev"
+    },
+    "searchQuery": "test employee"
+  }
+  

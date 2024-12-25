@@ -62,6 +62,18 @@
     "evaluationDate":"December 2024",
     "comments": ["just a test", "just a test"],
     "emptyComments": [" ", " "],
-     "searchQuery": "test employee"
+     "searchQuery": "test employee",
+     "currentStaff": [
+      "Rose Ataout",
+      "Taha Nakhleh",
+      "Abdullah Dawoud"
+    ],
+    "oldStaff": [
+      "Rana Jabareen",
+      "Rasha Bazbaz",
+      "Asem Thaher",
+      "Salem Awadallah",
+      "Nadia Khattab"
+    ]
   }
   

@@ -37,8 +37,8 @@ describe('Probation Evaluations', () => {
   it('verifies status filtering works correctly', () => {
     cy.visit(testData.urls.baseUrl);
     ProbationEvaluationsPage.navigateToProbationEvaluations(testData.locators);
-    ProbationEvaluationsPage.filterByStatus('Closed');
-    ProbationEvaluationsPage.verifyAllRowsHaveStatus('Closed');
+    ProbationEvaluationsPage.filterByStatus('Employee Acknowledged');
+    ProbationEvaluationsPage.verifyAllRowsHaveStatus('Employee Acknowledged');
   });
 
   it('verifies the action buttons exist', () => {
