@@ -46,7 +46,12 @@
       "changeStatusButton": "#change",
       "statusDropdown": "#newStatus",
       "showToastButton": "#showtoast",
-      "nameDropdown": "#name"
+      "nameDropdown": "#name",
+      "probationEvaluationsNav": ".nav-link",
+      "paginationNext": ".pagination-next",
+      "paginationPrev": ".pagination-prev",
+      "evaluationStatus":  ".form-control"
+      
     },
     "evaluationEmployeeName": "test employee",
     "selectEmployeeName":"test-employee",
@@ -56,6 +61,7 @@
     },
     "evaluationDate":"December 2024",
     "comments": ["just a test", "just a test"],
-    "emptyComments": [" ", " "]
+    "emptyComments": [" ", " "],
+     "searchQuery": "test employee"
   }
   
